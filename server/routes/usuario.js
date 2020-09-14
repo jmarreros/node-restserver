@@ -77,8 +77,6 @@ app.get('/usuario', verificaToken  ,(req, res) => {
     let id = req.params.id;
     let body = _.pick( req.body, 'nombre', 'email', 'password', 'img', 'role', 'estado' );
 
-    console.log(body);
-
     Usuario.findByIdAndUpdate(id, body, {new:true, runValidators:true, context: 'query'}, (err, usuarioDB) =>{
         if (err){
             return res.status(400).json({
